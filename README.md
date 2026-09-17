@@ -15,9 +15,10 @@
 | `dist/interaction.js` | 桌機風箏游標與微互動；觸控裝置及減少動態效果設定不啟用 |
 | `dist/assets/` | 網站照片與官方 Logo 圖檔 |
 | `AGENTS.md` | Codex 接續工作的專案指引 |
+| `PROJECT_CONTEXT.md` | 目前狀態、重要決策、最近修改與跨 AI 交接紀錄 |
 | `.github/workflows/deploy-pages.yml` | 將 main 分支的 dist/ 發布到 GitHub Pages |
 
-這是純 HTML/CSS 靜態網站，沒有套件安裝或編譯步驟。`dist/` 是直接編輯並提交的原始碼目錄，不是可刪除的編譯產物。
+這是純 HTML/CSS/JavaScript 靜態網站，沒有套件安裝或編譯步驟。`dist/` 是直接編輯並提交的原始碼目錄，不是可刪除的編譯產物。
 
 ## 在電腦開啟
 
@@ -36,11 +37,30 @@ python -m http.server 8000 --directory dist
 
 Windows 若使用 Python Launcher，可將 `python` 換成 `py`。接著開啟 http://localhost:8000 。
 
+## 在另一台電腦接續
+
+此儲存庫為公開儲存庫，任何電腦都能下載；若要提交及推送修改，需登入有寫入權限的 GitHub 帳號。Windows PowerShell 可依序執行：
+
+```powershell
+winget install --id Git.Git -e
+winget install --id GitHub.cli -e
+gh auth login
+gh repo clone aagghhgffddssa/kiteproject
+Set-Location kiteproject
+git pull --ff-only origin main
+```
+
+接著在 Codex 開啟整個 `kiteproject` 資料夾，並說：
+
+> 請先更新 main，閱讀 README.md、AGENTS.md 與 PROJECT_CONTEXT.md，再接續修改。完成後更新 PROJECT_CONTEXT.md、提交並推送 main，確認 GitHub Pages 發布成功。
+
+若電腦已經複製過此專案，不要再次 clone；進入既有 `kiteproject` 資料夾後執行 `git status --short` 與 `git pull --ff-only origin main`。若有未提交內容，先確認來源並保留，不要強制覆蓋。
+
 ## 用 Codex 接續修改
 
 在可以存取此儲存庫的 Codex 對話中，提供儲存庫網址並說明需求。例如：
 
-> 請接續修改 https://github.com/aagghhgffddssa/kiteproject 。先讀 README.md 和 AGENTS.md，以 main 分支最新版本為準。這次要修改：〔需求〕。完成後檢查文案、圖片連結、手機排版，將修改提交到 GitHub，並說明變更。
+> 請接續修改 https://github.com/aagghhgffddssa/kiteproject 。先讀 README.md、AGENTS.md 和 PROJECT_CONTEXT.md，以 main 分支最新版本為準。這次要修改：〔需求〕。完成後更新交接紀錄、檢查文案、圖片連結、手機排版，將修改提交到 GitHub，並說明變更。
 
 若使用本機工具，先複製儲存庫，再開啟整個 `kiteproject` 資料夾。開始下一次修改前，先檢查未提交變更，再更新遠端內容，避免覆蓋自己的工作。
 
@@ -65,7 +85,7 @@ Windows 若使用 Python Launcher，可將 `python` 換成 `py`。接著開啟 h
 
 後續可以對 Codex 說：
 
-> 請接續修改 aagghhgffddssa/kiteproject，先讀 README.md 與 AGENTS.md，以 GitHub main 最新版本為準。完成後提交到 GitHub，確認 GitHub Pages 發布結果，不要同步到 GPT Sites。
+> 請接續修改 aagghhgffddssa/kiteproject，先讀 README.md、AGENTS.md 與 PROJECT_CONTEXT.md，以 GitHub main 最新版本為準。完成後更新 PROJECT_CONTEXT.md、提交到 GitHub，確認 GitHub Pages 發布結果，不要同步到 GPT Sites。
 
 ## 內容維護
 
