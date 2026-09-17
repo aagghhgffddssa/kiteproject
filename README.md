@@ -12,7 +12,7 @@
 | --- | --- |
 | `dist/index.html` | 所有頁面文案、區塊、導覽與支持連結 |
 | `dist/style.css` | 色彩、排版、手機版與響應式樣式 |
-| `dist/assets/` | 網站使用的三張 WebP 圖片 |
+| `dist/assets/` | 網站照片與官方 Logo 圖檔 |
 | `AGENTS.md` | Codex 接續工作的專案指引 |
 | `.github/workflows/deploy-pages.yml` | 將 main 分支的 dist/ 發布到 GitHub Pages |
 
@@ -73,3 +73,9 @@ Windows 若使用 Python Launcher，可將 `python` 換成 `py`。接著開啟 h
 - 捐款按鈕連至青藝盟官方支持頁；企業合作連至青藝盟電子郵件。
 - 圖片來自本專案提供的青藝盟素材，請維持原本用途；本儲存庫不另行授予第三方素材授權。
 - 不包含原始 PDF、金鑰、帳密或其他內部文件。
+
+## Logo 使用
+
+- 頁首與頁尾使用使用者提供的「牽風箏的人」彩色橫式完整版；分頁圖示使用獨立風箏圖案（06 版）。
+- 頁尾使用青藝盟粉紅色橫式 Logo，連至官方網站。
+- PNG 保留原始比例與色彩；CSS 僅框住橫式 Logo 的多餘畫布留白，不裁切標誌內容。
