@@ -12,6 +12,7 @@
 | --- | --- |
 | `dist/index.html` | 所有頁面文案、區塊、導覽與支持連結 |
 | `dist/style.css` | 色彩、排版、手機版與響應式樣式 |
+| `dist/interaction.js` | 桌機風箏游標與微互動；觸控裝置及減少動態效果設定不啟用 |
 | `dist/assets/` | 網站照片與官方 Logo 圖檔 |
 | `AGENTS.md` | Codex 接續工作的專案指引 |
 | `.github/workflows/deploy-pages.yml` | 將 main 分支的 dist/ 發布到 GitHub Pages |
