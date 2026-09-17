@@ -38,3 +38,84 @@
   );
   window.addEventListener('blur', () => cursor.classList.remove('is-visible'));
 })();
+
+(() => {
+  const canAnimateWind = window.matchMedia(
+    '(min-width: 701px) and (prefers-reduced-motion: no-preference)'
+  );
+
+  if (!canAnimateWind.matches) return;
+
+  const heroCopy = document.querySelector('.hero-copy');
+  if (!heroCopy) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-wind';
+  canvas.setAttribute('aria-hidden', 'true');
+  heroCopy.prepend(canvas);
+
+  const context = canvas.getContext('2d');
+  if (!context) {
+    canvas.remove();
+    return;
+  }
+
+  let width = 0;
+  let height = 0;
+  let animationFrame = 0;
+  let pointerX = 0.5;
+  let pointerY = 0.5;
+
+  const resize = () => {
+    const bounds = heroCopy.getBoundingClientRect();
+    const scale = Math.min(window.devicePixelRatio || 1, 1.5);
+    width = Math.max(1, bounds.width);
+    height = Math.max(1, bounds.height);
+    canvas.width = Math.round(width * scale);
+    canvas.height = Math.round(height * scale);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    context.setTransform(scale, 0, 0, scale, 0, 0);
+  };
+
+  const draw = (time) => {
+    context.clearRect(0, 0, width, height);
+    context.lineWidth = 1;
+
+    for (let line = 0; line < 6; line += 1) {
+      const baseY = height * (0.12 + line * 0.155);
+      const amplitude = 7 + line * 1.8;
+      const pointerLift = (pointerY - 0.5) * 14 * (line / 5);
+      const phase = time * (0.00022 + line * 0.000012) + pointerX * 1.6;
+
+      context.beginPath();
+      for (let x = -20; x <= width + 20; x += 12) {
+        const wave = Math.sin(x * 0.012 + phase + line * 0.7) * amplitude;
+        const detail = Math.sin(x * 0.027 - phase * 0.65) * 2.2;
+        const y = baseY + wave + detail + pointerLift;
+        if (x === -20) context.moveTo(x, y);
+        else context.lineTo(x, y);
+      }
+      context.strokeStyle = `rgba(38, 78, 64, ${0.055 + line * 0.009})`;
+      context.stroke();
+    }
+
+    animationFrame = window.requestAnimationFrame(draw);
+  };
+
+  heroCopy.addEventListener('pointermove', (event) => {
+    const bounds = heroCopy.getBoundingClientRect();
+    pointerX = (event.clientX - bounds.left) / bounds.width;
+    pointerY = (event.clientY - bounds.top) / bounds.height;
+  });
+
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(heroCopy);
+  resize();
+  animationFrame = window.requestAnimationFrame(draw);
+
+  document.addEventListener('visibilitychange', () => {
+    window.cancelAnimationFrame(animationFrame);
+    if (!document.hidden) animationFrame = window.requestAnimationFrame(draw);
+  });
+})();
