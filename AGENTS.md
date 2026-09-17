@@ -17,13 +17,15 @@
 ## 驗證
 - 檢查所有本機圖片、樣式路徑與頁內錨點可對應實際檔案或 ID。
 - 確認手機版不截字、不產生水平溢出，主要按鈕與連結仍可使用。
-- 有瀏覽器環境時可檢查約 390px 與 1440px 視窗；若使用 Sites，遵守該環境的預覽規則。
+- 有瀏覽器環境時可檢查約 390px 與 1440px 視窗。
 - 不要為簡單文案修改增加測試框架。誠實說明實際完成的驗證。
 
 ## 版本與發布
-- GitHub 儲存庫：aagghhgffddssa/kiteproject，主分支 main。
-- 公開網站：https://kite-people.aagghhgffddssa.chatgpt.site
-- GitHub 尚未設定自動發布；提交程式碼不等於更新線上網站。
-- 若要更新既有 Sites，沿用 `.openai/hosting.json` 中的 project_id；不要重新建立網站或更換網址。
-- 先從 GitHub 取得最新內容再發布，遵循可用的 Sites 技能、來源同步及部署流程。
+- GitHub 儲存庫：aagghhgffddssa/kiteproject，主分支 main，為唯一原始碼來源。
+- 唯一發布平台：GitHub Pages；預定網址 https://aagghhgffddssa.github.io/kiteproject/ 。首次啟用與部署成功前，不能宣稱網址已上線。
+- 使用者已明確要求不再同步到 GPT Sites。不要呼叫 Sites 部署、不恢復 .openai/hosting.json、不新建 Sites 網站。
+- `.github/workflows/deploy-pages.yml` 在 main 推送後發布 dist/，亦可手動執行。
+- 設定 Pages Source 為 GitHub Actions；公開發布是否完成以對應 commit 的 workflow/deployment 結果為準。
+- 保留相對路徑（如 assets/hero.webp），確保 /kiteproject/ 子目錄下正常運作。
+- 若有遠端新變更，先整合再提交，不強制覆蓋 main。
 - 不要將金鑰、存取權杖、原始附件、暫存壓縮檔或使用者內部文件提交到公開儲存庫。

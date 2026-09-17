@@ -2,7 +2,7 @@
 
 青少年表演藝術聯盟「牽風箏的人」品牌網站，以「用戲劇，陪伴少年飛向自己」為主軸，呈現計畫理念、服務成果、2.0 教師培育與贊助支持。
 
-- 公開網站：https://kite-people.aagghhgffddssa.chatgpt.site
+- GitHub Pages 網址（首次啟用並成功部署後）：https://aagghhgffddssa.github.io/kiteproject/
 - 原始碼：https://github.com/aagghhgffddssa/kiteproject
 - 本次匯入版本：2026-09-17，已移除公開頁面的資料來源說明。
 
@@ -14,7 +14,7 @@
 | `dist/style.css` | 色彩、排版、手機版與響應式樣式 |
 | `dist/assets/` | 網站使用的三張 WebP 圖片 |
 | `AGENTS.md` | Codex 接續工作的專案指引 |
-| `.openai/hosting.json` | 既有 Sites 網站識別與發布目錄，並非金鑰 |
+| `.github/workflows/deploy-pages.yml` | 將 main 分支的 dist/ 發布到 GitHub Pages |
 
 這是純 HTML/CSS 靜態網站，沒有套件安裝或編譯步驟。`dist/` 是直接編輯並提交的原始碼目錄，不是可刪除的編譯產物。
 
@@ -45,15 +45,26 @@ Windows 若使用 Python Launcher，可將 `python` 換成 `py`。接著開啟 h
 
 `AGENTS.md` 用於保存專案指引，可參考 [OpenAI 官方說明](https://learn.chatgpt.com/docs/agent-configuration/agents-md)。
 
-## GitHub 與公開網站的關係
+## 唯一維護與發布來源：GitHub
 
-本儲存庫保存可編輯的完整網站版本。目前**沒有設定 GitHub 推送後自動發布**，GitHub 更新不會直接改動現有 Sites 網站，也尚未啟用 GitHub Pages。
+以此儲存庫 `main` 分支為唯一原始碼來源，公開網站改用 **GitHub Pages**。不再同步或發布到先前由 GPT Sites 產生的網站，專案已移除 Sites hosting 設定。
 
-需要更新現有公開網站時，可以說：
+### 第一次啟用
 
-> 請把 aagghhgffddssa/kiteproject 的 main 最新內容發布到既有的牽風箏的人 Sites 網站，沿用 .openai/hosting.json 的 project_id，保留目前公開網址與公開權限，不要另建網站。
+1. 到儲存庫 **Settings → Pages**。
+2. 在 **Build and deployment → Source** 選擇 **GitHub Actions**。
+3. 到 **Actions → Deploy GitHub Pages**，必要時按 **Run workflow**，選擇 `main`。
+4. 工作流程成功後，從 Pages 設定或部署結果開啟網站。
 
-發布者需具備該 Sites 的存取權限及 Sites 工具。應先取得 GitHub 最新內容、檢查變更，再依 Sites 流程同步來源及發布，避免用舊的 Sites 工作副本覆蓋新版 GitHub 程式碼。
+設定入口：https://github.com/aagghhgffddssa/kiteproject/settings/pages
+
+### 日常更新
+
+修改並推送到 `main` 後，GitHub Actions 會自動發布 `dist/`。若採用分支與 PR，合併到 `main` 後才會更新網站。以工作流程的成功狀態確認發布完成；失敗時不要將儲存庫更新誤認為線上更新。
+
+後續可以對 Codex 說：
+
+> 請接續修改 aagghhgffddssa/kiteproject，先讀 README.md 與 AGENTS.md，以 GitHub main 最新版本為準。完成後提交到 GitHub，確認 GitHub Pages 發布結果，不要同步到 GPT Sites。
 
 ## 內容維護
 
