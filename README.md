@@ -2,7 +2,7 @@
 
 青少年表演藝術聯盟「牽風箏的人」品牌網站，以「用戲劇，陪伴少年飛向自己」為主軸，呈現計畫理念、服務成果、2.0 教師培育與贊助支持。
 
-- GitHub Pages 網址（首次啟用並成功部署後）：https://aagghhgffddssa.github.io/kiteproject/
+- Vercel 網址：https://kiteproject-silk.vercel.app/
 - 原始碼：https://github.com/aagghhgffddssa/kiteproject
 - 本次匯入版本：2026-09-17，已移除公開頁面的資料來源說明。
 
@@ -14,9 +14,10 @@
 | `dist/style.css` | 色彩、排版、手機版與響應式樣式 |
 | `dist/interaction.js` | 桌機風箏游標與微互動；觸控裝置及減少動態效果設定不啟用 |
 | `dist/assets/` | 網站照片與官方 Logo 圖檔 |
+| `vercel.json` | Vercel 部署設定，將 `dist/` 發布為網站根目錄 |
 | `AGENTS.md` | Codex 接續工作的專案指引 |
 | `PROJECT_CONTEXT.md` | 目前狀態、重要決策、最近修改與跨 AI 交接紀錄 |
-| `.github/workflows/deploy-pages.yml` | 將 main 分支的 dist/ 發布到 GitHub Pages |
+| `.github/workflows/deploy-pages.yml` | 既有 GitHub Pages workflow；目前正式發布改由 Vercel 處理 |
 
 這是純 HTML/CSS/JavaScript 靜態網站，沒有套件安裝或編譯步驟。`dist/` 是直接編輯並提交的原始碼目錄，不是可刪除的編譯產物。
 
@@ -52,7 +53,7 @@ git pull --ff-only origin main
 
 接著在 Codex 開啟整個 `kiteproject` 資料夾，並說：
 
-> 請先更新 main，閱讀 README.md、AGENTS.md 與 PROJECT_CONTEXT.md，再接續修改。完成後更新 PROJECT_CONTEXT.md、提交並推送 main，確認 GitHub Pages 發布成功。
+> 請先更新 main，閱讀 README.md、AGENTS.md 與 PROJECT_CONTEXT.md，再接續修改。完成後更新 PROJECT_CONTEXT.md、提交並推送 main，確認 Vercel 發布成功。
 
 若電腦已經複製過此專案，不要再次 clone；進入既有 `kiteproject` 資料夾後執行 `git status --short` 與 `git pull --ff-only origin main`。若有未提交內容，先確認來源並保留，不要強制覆蓋。
 
@@ -66,26 +67,24 @@ git pull --ff-only origin main
 
 `AGENTS.md` 用於保存專案指引，可參考 [OpenAI 官方說明](https://learn.chatgpt.com/docs/agent-configuration/agents-md)。
 
-## 唯一維護與發布來源：GitHub
+## 維護與發布
 
-以此儲存庫 `main` 分支為唯一原始碼來源，公開網站改用 **GitHub Pages**。不再同步或發布到先前由 GPT Sites 產生的網站，專案已移除 Sites hosting 設定。
+以此儲存庫 `main` 分支為唯一原始碼來源，公開網站使用 **Vercel** 發布。Vercel 透過 `vercel.json` 將 `dist/` 作為網站輸出目錄；推送 `main` 後會自動重新部署。不再同步或發布到先前由 GPT Sites 產生的網站。
 
 ### 第一次啟用
 
-1. 到儲存庫 **Settings → Pages**。
-2. 在 **Build and deployment → Source** 選擇 **GitHub Actions**。
-3. 到 **Actions → Deploy GitHub Pages**，必要時按 **Run workflow**，選擇 `main`。
-4. 工作流程成功後，從 Pages 設定或部署結果開啟網站。
-
-設定入口：https://github.com/aagghhgffddssa/kiteproject/settings/pages
+1. 在 Vercel 匯入 GitHub 儲存庫 `aagghhgffddssa/kiteproject`。
+2. Framework Preset 選擇 **Other**。
+3. Root Directory 保持儲存庫根目錄 `.`；輸出目錄由 `vercel.json` 指定為 `dist`。
+4. 部署成功後開啟 Vercel 提供的 Production Domain。
 
 ### 日常更新
 
-修改並推送到 `main` 後，GitHub Actions 會自動發布 `dist/`。若採用分支與 PR，合併到 `main` 後才會更新網站。以工作流程的成功狀態確認發布完成；失敗時不要將儲存庫更新誤認為線上更新。
+修改並推送到 `main` 後，Vercel 會自動發布 `dist/`。若採用分支與 PR，合併到 `main` 後才會更新正式網站。以 Vercel Deployment 的成功狀態及實際頁面確認發布完成；失敗時不要將儲存庫更新誤認為線上更新。
 
 後續可以對 Codex 說：
 
-> 請接續修改 aagghhgffddssa/kiteproject，先讀 README.md、AGENTS.md 與 PROJECT_CONTEXT.md，以 GitHub main 最新版本為準。完成後更新 PROJECT_CONTEXT.md、提交到 GitHub，確認 GitHub Pages 發布結果，不要同步到 GPT Sites。
+> 請接續修改 aagghhgffddssa/kiteproject，先讀 README.md、AGENTS.md 與 PROJECT_CONTEXT.md，以 GitHub main 最新版本為準。完成後更新 PROJECT_CONTEXT.md、提交到 GitHub，確認 Vercel 發布結果，不要同步到 GPT Sites。
 
 ## 內容維護
 

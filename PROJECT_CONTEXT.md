@@ -5,9 +5,9 @@
 ## 專案入口
 
 - GitHub 儲存庫：https://github.com/aagghhgffddssa/kiteproject
-- 公開網站：https://aagghhgffddssa.github.io/kiteproject/
+- 公開網站：https://kiteproject-silk.vercel.app/
 - 唯一維護分支：`main`
-- 唯一發布方式：GitHub Pages，由 `.github/workflows/deploy-pages.yml` 自動發布 `dist/`
+- 發布方式：Vercel，由 `vercel.json` 指定並自動發布 `dist/`
 - 網站型態：純 HTML、CSS、JavaScript，沒有建置步驟或套件依賴
 
 ## 目前狀態
@@ -21,7 +21,7 @@
 
 ## 不可任意改變的決策
 
-- GitHub 與 GitHub Pages 是唯一維護及發布來源，不同步到 GPT Sites，也不另建網站。
+- GitHub 是唯一原始碼來源，Vercel 是公開發布平台；不同步到 GPT Sites，也不另建網站。
 - `dist/` 是直接維護的原始碼，不能當成可清除的編譯產物。
 - 使用繁體中文；文案溫暖、具體，避免污名化與沒有年份或依據的成果宣稱。
 - 保留相對素材路徑，確保網站能在 `/kiteproject/` 子目錄運作。
@@ -36,12 +36,13 @@
 4. 僅修改需求涉及的內容，保留未指定部分。
 5. 至少檢查約 1440px 與 390px 畫面、水平溢出、圖片、頁內錨點及相關外部連結；JavaScript 有異動時檢查瀏覽器錯誤、觸控裝置與 reduced-motion 行為。
 6. 更新下方「最近修改」。如果安裝、目錄或跨電腦方式改變，也更新 `README.md`。
-7. 檢查差異，提交並推送 `main`；確認對應 commit 的 GitHub Pages workflow 成功，再核對線上頁面。
+7. 檢查差異，提交並推送 `main`；確認對應 commit 的 Vercel deployment 成功，再核對線上頁面。
 
 ## 最近修改
 
 採新到舊排列，最多保留 10 筆。
 
+- 2026-09-17：公開發布平台改為 Vercel，新增 `vercel.json` 指定 `dist/` 為輸出目錄，修正成功部署後首頁 404。
 - 2026-09-17：建立跨電腦與跨 AI 交接規則，新增本文件及另一台 Windows 電腦的接續步驟。
 - 2026-09-17：加入桌機品牌風箏游標、連結回應與卡片微互動；觸控裝置及 reduced-motion 不啟用。
 - 2026-09-17：換用「牽風箏的人」與青藝盟官方 Logo，並更新分頁圖示。
